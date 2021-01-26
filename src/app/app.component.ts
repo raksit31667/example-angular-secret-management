@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseMessagingService} from "./firebase-messaging.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,11 @@ import {FirebaseMessagingService} from "./firebase-messaging.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'example-angular-order';
   currentMessage: any;
 
-  constructor(private firebaseMessagingService: FirebaseMessagingService) {
-
+  constructor(public translateService: TranslateService, private firebaseMessagingService: FirebaseMessagingService) {
+    translateService.addLangs(['en', 'th']);
+    translateService.setDefaultLang('en');
   }
 
   ngOnInit(): void {
