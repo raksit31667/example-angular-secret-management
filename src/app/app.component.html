@@ -1,1 +1,9 @@
-{{ currentMessage | async | json }}
+<div>
+  <label>
+    <select #selectedLang (change)="translateService.use(selectedLang.value)">
+      <option *ngFor="let lang of translateService.getLangs()" [value]="lang"
+              [selected]="lang === translateService.currentLang">{{ lang }}</option>
+    </select>
+  </label>
+  <p id="current-message">{{ 'app.message' | translate }}: {{ currentMessage | async | json }}</p>
+</div>
