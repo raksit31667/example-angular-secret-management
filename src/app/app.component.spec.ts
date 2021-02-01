@@ -8,6 +8,7 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 describe('AppComponent', () => {
 
   let firebaseMessagingService: FirebaseMessagingService;
+  let translateService: TranslateService;
   let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async () => {
@@ -38,6 +39,7 @@ describe('AppComponent', () => {
     }).compileComponents();
 
     firebaseMessagingService = TestBed.inject(FirebaseMessagingService);
+    translateService = TestBed.inject(TranslateService);
     fixture = TestBed.createComponent(AppComponent);
   });
 
@@ -79,6 +81,19 @@ describe('AppComponent', () => {
     expect(firebaseMessagingService.subscribeToForegroundNotification).toHaveBeenCalled();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('#current-message').textContent).toEqual('Message: "this is a new notification"');
+  });
+
+  it('should call translateService.use when change selected language', () => {
+    // Given
+    const select = fixture.nativeElement.querySelector('select');
+    spyOn(translateService, 'use');
+
+    // When
+    select.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    // Then
+    expect(translateService.use).toHaveBeenCalled();
   });
 });
 
