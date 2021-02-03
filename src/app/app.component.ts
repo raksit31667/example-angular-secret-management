@@ -20,4 +20,8 @@ export class AppComponent implements OnInit {
     this.firebaseMessagingService.subscribeToForegroundNotification();
     this.currentMessage = this.firebaseMessagingService.currentMessage;
   }
+
+  onSelectLanguage(language: string) {
+    this.translateService.use(language);
+  }
 }

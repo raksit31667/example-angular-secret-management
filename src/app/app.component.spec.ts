@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import {FirebaseMessagingService} from "./firebase-messaging.service";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {BehaviorSubject, Observable, of} from "rxjs";
+import {LanguageSelectComponent} from "./i18n/language-select/language-select.component";
 
 describe('AppComponent', () => {
 
@@ -34,7 +35,8 @@ describe('AppComponent', () => {
         }
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        LanguageSelectComponent
       ],
     }).compileComponents();
 
@@ -81,19 +83,6 @@ describe('AppComponent', () => {
     expect(firebaseMessagingService.subscribeToForegroundNotification).toHaveBeenCalled();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('#current-message').textContent).toEqual('Message: "this is a new notification"');
-  });
-
-  it('should call translateService.use when change selected language', () => {
-    // Given
-    const select = fixture.nativeElement.querySelector('select');
-    spyOn(translateService, 'use');
-
-    // When
-    select.dispatchEvent(new Event('change'));
-    fixture.detectChanges();
-
-    // Then
-    expect(translateService.use).toHaveBeenCalled();
   });
 });
 

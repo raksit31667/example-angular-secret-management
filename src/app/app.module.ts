@@ -8,6 +8,7 @@ import {AngularFireMessagingModule} from "@angular/fire/messaging";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {LanguageSelectComponent} from "./i18n/language-select/language-select.component";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -16,7 +17,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LanguageSelectComponent
   ],
   imports: [
     BrowserModule,
