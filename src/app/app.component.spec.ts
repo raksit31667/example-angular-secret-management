@@ -11,6 +11,7 @@ describe('AppComponent', () => {
   let firebaseMessagingService: FirebaseMessagingService;
   let translateService: TranslateService;
   let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -43,30 +44,23 @@ describe('AppComponent', () => {
     firebaseMessagingService = TestBed.inject(FirebaseMessagingService);
     translateService = TestBed.inject(TranslateService);
     fixture = TestBed.createComponent(AppComponent);
-  });
-
-  it('should create the app', () => {
-     // When
-    const app = fixture.componentInstance;
-
-    // Then
-    expect(app).toBeTruthy();
+    component = fixture.componentInstance;
   });
 
   it(`should have English and Thai as available languages`, () => {
     // When
-    const app = fixture.componentInstance;
+    fixture.detectChanges();
 
     // Then
-    expect(app.translateService.getLangs()).toEqual(['en', 'th']);
+    expect(component.translateService.getLangs()).toEqual(['en', 'th']);
   });
 
   it(`should set default language to English`, () => {
     // When
-    const app = fixture.componentInstance;
+    fixture.detectChanges();
 
     // Then
-    expect(app.translateService.defaultLang).toEqual('en');
+    expect(component.translateService.defaultLang).toEqual('en');
   });
 
   it('should request token, subscribe for, and render Firebase messaging', () => {
@@ -83,6 +77,17 @@ describe('AppComponent', () => {
     expect(firebaseMessagingService.subscribeToForegroundNotification).toHaveBeenCalled();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('#current-message').textContent).toEqual('Message: "this is a new notification"');
+  });
+
+  it('should call translateService.use when onSelectLanguage triggers from LanguageSelectComponent', () => {
+    // Given
+    spyOn(translateService, 'use');
+
+    // When
+    component.onSelectLanguage('th');
+
+    // Then
+    expect(translateService.use).toHaveBeenCalledWith('th');
   });
 });
 
