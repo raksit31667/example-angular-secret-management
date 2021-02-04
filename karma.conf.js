@@ -7,6 +7,7 @@ module.exports = function (config) {
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
+      require('karma-coverage'),
       require('karma-phantomjs-launcher'),
       require('karma-jasmine-html-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
@@ -31,7 +32,7 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
