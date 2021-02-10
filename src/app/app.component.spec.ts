@@ -31,9 +31,7 @@ describe('AppComponent', () => {
             currentMessage: new BehaviorSubject(null)
           }
         },
-        {
-          provide: TranslateService, useClass: TranslateService
-        }
+        TranslateService,
       ],
       declarations: [
         AppComponent,
