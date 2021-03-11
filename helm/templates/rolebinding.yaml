@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "example-angular-order.fullname" . }}
+  labels:
+    {{- include "example-angular-order.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "example-angular-order.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "example-angular-order.serviceAccountName" . }}
