@@ -50,4 +50,3 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: "${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
-
