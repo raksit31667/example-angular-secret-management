@@ -6,6 +6,7 @@ COPY . .
 RUN node_modules/.bin/ng build --prod
 
 FROM nginx:alpine as server
+COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist/example-angular-order /usr/share/nginx/html
 EXPOSE 80
