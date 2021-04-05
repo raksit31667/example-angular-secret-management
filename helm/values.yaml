@@ -70,6 +70,13 @@ resources:
      cpu: 300m
      memory: 512Mi
 
+configMap:
+  mountPath: /usr/share/nginx/html/assets/
+  values: |-
+    {
+      "backgroundColor: "green"
+    }
+
 autoscaling:
   enabled: false
   minReplicas: 1
