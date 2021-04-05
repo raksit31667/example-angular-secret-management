@@ -27,6 +27,10 @@ spec:
       serviceAccountName: {{ include "example-angular-order.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: configmap-volume
+          configMap:
+            name: {{ include "example-angular-order.fullname" . }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -37,6 +41,9 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          volumeMounts:
+            - mountPath: {{ .Values.configMap.mountPath }}
+              name: configmap-volume
           livenessProbe:
             httpGet:
               path: /
