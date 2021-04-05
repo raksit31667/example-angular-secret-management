@@ -71,10 +71,10 @@ resources:
      memory: 512Mi
 
 configMap:
-  mountPath: /usr/share/nginx/html/assets/
+  mountPath: /usr/share/nginx/html/assets/config/
   values: |-
     {
-      "backgroundColor: "green"
+      "backgroundColor": "green"
     }
 
 autoscaling:

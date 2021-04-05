@@ -30,7 +30,7 @@ describe('AppConfiguration', () => {
     })
 
     // Then
-    const req = httpMock.expectOne('assets/app.config.json');
+    const req = httpMock.expectOne('assets/config/app.config.json');
     expect(req.request.method).toBe('GET');
     req.flush(mockConfig);
     httpMock.verify();

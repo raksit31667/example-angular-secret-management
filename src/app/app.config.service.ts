@@ -8,7 +8,7 @@ export class AppConfigurationProvider {
 
   constructor(private http: HttpClient) { }
 
-  private configPath = 'assets/app.config.json';
+  private configPath = 'assets/config/app.config.json';
 
   private configValues: any = null;
 
@@ -19,6 +19,7 @@ export class AppConfigurationProvider {
   public load(): Promise<any> {
     return new Promise<any>(resolve => {
       this.http.get(this.configPath).subscribe(response => {
+        console.log('configValues', response);
         this.configValues = response;
         resolve(true);
       });
