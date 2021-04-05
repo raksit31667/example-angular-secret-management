@@ -5,6 +5,7 @@ import {FirebaseMessagingService} from "./firebase-messaging.service";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {LanguageSelectComponent} from "./i18n/language-select/language-select.component";
+import {AppConfigurationProvider} from "./app.config.service";
 
 describe('AppComponent', () => {
 
@@ -29,6 +30,13 @@ describe('AppComponent', () => {
             requestToken() {},
             subscribeToForegroundNotification() {},
             currentMessage: new BehaviorSubject(null)
+          }
+        },
+        {
+          provide: AppConfigurationProvider, useValue: {
+            config: {
+              backgroundColor: 'red'
+            }
           }
         },
         TranslateService,
@@ -86,6 +94,14 @@ describe('AppComponent', () => {
 
     // Then
     expect(translateService.use).toHaveBeenCalledWith('th');
+  });
+
+  it(`should set background color based on app configuration`, () => {
+    // When
+    fixture.detectChanges();
+
+    // Then
+    expect(fixture.nativeElement.ownerDocument.body.style.backgroundColor).toEqual('red');
   });
 });
 
