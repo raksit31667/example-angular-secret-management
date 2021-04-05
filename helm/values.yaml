@@ -74,7 +74,7 @@ configMap:
   mountPath: /usr/share/nginx/html/assets/
   values: |-
     {
-      "backgroundColor: "green"
+      "backgroundColor": "green"
     }
 
 autoscaling:
