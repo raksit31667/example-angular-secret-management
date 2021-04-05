@@ -52,7 +52,7 @@ export function AppConfigurationProviderFactory(appConfigurationProvider: AppCon
     {
       provide: APP_INITIALIZER,
       useFactory: AppConfigurationProviderFactory,
-      deps: [ AppConfigurationProviderFactory ],
+      deps: [ AppConfigurationProvider ],
       multi: true
     }
   ],
