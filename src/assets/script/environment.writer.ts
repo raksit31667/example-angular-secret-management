@@ -1,4 +1,4 @@
-import {writeFile} from "fs";
+import {existsSync, mkdirSync, writeFile} from "fs";
 
 require('dotenv').config();
 const { argv } = require('yargs');
@@ -12,6 +12,12 @@ function writeEnvironmentFile(targetPath: string, content: string) {
       console.log(`Wrote variables to ${targetPath}`);
     }
   });
+}
+
+const envDirectory = './src/environments';
+
+if (!existsSync(envDirectory)) {
+  mkdirSync(envDirectory);
 }
 
 //create environment files if it does not exist
