@@ -7,6 +7,8 @@
     "start": "npm run write-environment -- --environment=local && ng serve",
     "build": "npm run write-environment -- --environment=deployment && ng build --configuration=deployment",
     "test": "npm run write-environment -- --environment=local && ng test",
+    "decryptAppConfig": "ts-node src/assets/script/app.config.decryptor.ts",
+    "encryptAppConfig": "ts-node src/assets/script/app.config.encryptor.ts",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
