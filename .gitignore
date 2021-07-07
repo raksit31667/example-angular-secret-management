@@ -49,3 +49,6 @@ Thumbs.db
 .env
 environment.ts
 environment.deployment.ts
+
+# Configuration file
+app.config.json
