@@ -29,6 +29,6 @@ jobs:
         uses: finnp/create-file-action@1.0.0
         env:
           FILE_NAME: .env
-          FILE_BASE64: ${{ secrets.ENV_CONTENT }}
+          FILE_DATA: ${{ secrets.ENV_CONTENT }}
       - name: Unit test
         run: yarn test
