@@ -3,7 +3,7 @@ COPY package.json yarn.lock ./
 RUN yarn && mkdir /app && mv ./node_modules ./app
 WORKDIR /app
 COPY . .
-RUN node_modules/.bin/ng build --prod
+RUN yarn build
 
 FROM nginx:alpine as server
 COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
