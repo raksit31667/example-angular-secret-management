@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import * as CryptoJS from 'crypto-js';
+import {Observable} from "rxjs";
+import {map, shareReplay} from "rxjs/operators";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +16,21 @@ export class AppConfigurationProvider {
 
   private configValues: any = null;
 
+  private configObservable: Observable<any> = this.http
+    .get(this.configPath)
+    .pipe(map(
+        (config: any) =>
+          JSON.parse(CryptoJS.AES.decrypt(config.data, environment.encryptionKey).toString(CryptoJS.enc.Utf8))
+      ))
+    .pipe(shareReplay(1));
+
   get config() {
     return this.configValues;
   }
 
   public load(): Promise<any> {
-    return new Promise<any>(resolve => {
-      this.http.get(this.configPath).subscribe(response => {
-        console.log('configValues', response);
-        this.configValues = response;
-        resolve(true);
-      });
+    return this.configObservable.toPromise().then((response: any) => {
+      this.configValues = response;
     });
   }
 }
