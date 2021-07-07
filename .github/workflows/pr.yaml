@@ -25,5 +25,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: yarn
+      - name: Create .env File
+        uses: finnp/create-file-action@1.0.0
+        env:
+          FILE_NAME: .env
+          FILE_BASE64: ${{ secrets.ENV_CONTENT }}
       - name: Unit test
         run: yarn test
