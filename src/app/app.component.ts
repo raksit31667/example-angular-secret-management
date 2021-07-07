@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import {FirebaseMessagingService} from "./firebase-messaging.service";
 import {TranslateService} from "@ngx-translate/core";
 import {AppConfigurationProvider} from "./app.config.service";
+import { environment } from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import {AppConfigurationProvider} from "./app.config.service";
 })
 export class AppComponent implements OnInit, AfterViewInit {
   currentMessage: any;
+  encryptionKey: any;
 
   constructor(public translateService: TranslateService,
               private firebaseMessagingService: FirebaseMessagingService,
@@ -23,6 +25,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.firebaseMessagingService.requestToken();
     this.firebaseMessagingService.subscribeToForegroundNotification();
     this.currentMessage = this.firebaseMessagingService.currentMessage;
+    this.encryptionKey = environment.encryptionKey;
   }
 
   ngAfterViewInit(): void {

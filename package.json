@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "write-environment": "ts-node src/assets/script/environment.writer.ts",
+    "start": "npm run write-environment -- --environment=local && ng serve",
+    "build": "npm run write-environment -- --environment=deployment && ng build --configuration=deployment",
+    "test": "npm run write-environment -- --environment=local && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -34,6 +35,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "dotenv": "^10.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",
@@ -45,6 +47,7 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "~4.0.2",
+    "yargs": "^17.0.1"
   }
 }
