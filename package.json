@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "write-environment": "ts-node src/assets/script/environment.writer.ts",
+    "start": "npm run write-environment -- --environment=local && ng serve",
+    "build": "npm run write-environment -- --environment=deployment && ng build --configuration=deployment",
+    "test": "npm run write-environment -- --environment=local && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
