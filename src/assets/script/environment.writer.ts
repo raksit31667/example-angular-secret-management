@@ -9,7 +9,7 @@ function writeEnvironmentFile(targetPath: string, content: string) {
       console.log(err);
     }
     if (content !== '') {
-      console.log(`Wrote variables to ${targetPath}: ${content}`);
+      console.log(`Wrote variables to ${targetPath}`);
     }
   });
 }
