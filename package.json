@@ -7,6 +7,8 @@
     "start": "npm run write-environment -- --environment=local && ng serve",
     "build": "npm run write-environment -- --environment=deployment && ng build --configuration=deployment",
     "test": "npm run write-environment -- --environment=local && ng test",
+    "decryptAppConfig": "ts-node src/assets/script/app.config.decryptor.ts",
+    "encryptAppConfig": "ts-node src/assets/script/app.config.encryptor.ts",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -34,6 +36,8 @@
     "@angular/compiler-cli": "~11.0.9",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "@types/crypto-js": "^4.0.1",
+    "crypto-js": "^3.1.9-1",
     "codelyzer": "^6.0.0",
     "dotenv": "^10.0.0",
     "jasmine-core": "~3.6.0",
