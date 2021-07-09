@@ -2,7 +2,6 @@ import * as CryptoJS from 'crypto-js';
 import * as fs from 'fs';
 import * as path from 'path';
 
-
 require('dotenv').config();
 const { argv } = require('yargs');
 
