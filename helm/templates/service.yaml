@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "example-angular-order.fullname" . }}
+  name: {{ include "example-angular-secret-management.fullname" . }}
   labels:
-    {{- include "example-angular-order.labels" . | nindent 4 }}
+    {{- include "example-angular-secret-management.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -13,4 +13,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "example-angular-order.selectorLabels" . | nindent 4 }}
+    {{- include "example-angular-secret-management.selectorLabels" . | nindent 4 }}

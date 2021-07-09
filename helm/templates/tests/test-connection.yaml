@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "example-angular-order.fullname" . }}-test-connection"
+  name: "{{ include "example-angular-secret-management.fullname" . }}-test-connection"
   labels:
-    {{- include "example-angular-order.labels" . | nindent 4 }}
+    {{- include "example-angular-secret-management.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "example-angular-order.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "example-angular-secret-management.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never

@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "example-angular-order.fullname" . }}
+  name: {{ include "example-angular-secret-management.fullname" . }}
   labels:
-    {{- include "example-angular-order.labels" . | nindent 4 }}
+    {{- include "example-angular-secret-management.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "example-angular-order.selectorLabels" . | nindent 6 }}
+      {{- include "example-angular-secret-management.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,19 +18,19 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "example-angular-order.selectorLabels" . | nindent 8 }}
+        {{- include "example-angular-secret-management.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "example-angular-order.serviceAccountName" . }}
+      serviceAccountName: {{ include "example-angular-secret-management.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
         - name: configmap-volume
           configMap:
-            name: {{ include "example-angular-order.fullname" . }}
+            name: {{ include "example-angular-secret-management.fullname" . }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
