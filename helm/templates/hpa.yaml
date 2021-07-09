@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "example-angular-order.fullname" . }}
+  name: {{ include "example-angular-secret-management.fullname" . }}
   labels:
-    {{- include "example-angular-order.labels" . | nindent 4 }}
+    {{- include "example-angular-secret-management.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "example-angular-order.fullname" . }}
+    name: {{ include "example-angular-secret-management.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

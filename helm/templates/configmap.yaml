@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "example-angular-order.fullname" . }}
+  name: {{ include "example-angular-secret-management.fullname" . }}
   labels:
-  {{- include "example-angular-order.labels" . | nindent 4 }}
+  {{- include "example-angular-secret-management.labels" . | nindent 4 }}
 data:
   app.config.json: |-
     {{- if .Values.configMap.values }}
