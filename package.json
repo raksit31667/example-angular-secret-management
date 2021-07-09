@@ -7,8 +7,8 @@
     "start": "npm run write-environment -- --environment=local && ng serve",
     "build": "npm run write-environment -- --environment=deployment && ng build --configuration=deployment",
     "test": "npm run write-environment -- --environment=local && ng test",
-    "decryptAppConfig": "ts-node src/assets/script/app.config.decryptor.ts",
-    "encryptAppConfig": "ts-node src/assets/script/app.config.encryptor.ts",
+    "decrypt-app-config": "ts-node src/assets/script/app.config.decryptor.ts",
+    "encrypt-app-config": "ts-node src/assets/script/app.config.encryptor.ts",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -25,7 +25,7 @@
     "@angular/router": "~11.0.9",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
-    "firebase": "^8.2.6",
+    "firebase": "^8.7.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
