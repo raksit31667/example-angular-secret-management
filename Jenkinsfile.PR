@@ -1,0 +1,38 @@
+pipeline {
+  agent { label 'nodejs' }
+
+  environment {
+    NAMESPACE = sh(script: "cat '/var/run/secrets/kubernetes.io/serviceaccount/namespace'", returnStdout: true).trim()
+    repoName = "example-angular-secret-management"
+  }
+  stages {
+    stage('Install dependencies') {
+      steps {
+        script {
+          sh "npm install"
+        }
+      }
+    }
+    stage('Import environment file') {
+      steps {
+        script {
+          withCredentials([string(credentialsId: "${env.NAMESPACE}-dotenv", variable: 'DOTENV')]) {
+            def dotenvFile = readJSON text: DOTENV
+            def dotenvFileValueEncoded = dotenvFile.get(".env")
+            def dotenvFileContent = new String(dotenvFileValueEncoded.decodeBase64())
+
+            writeFile file: '.env', text: dotenvFileContent
+          }
+        }
+      }
+    }
+    stage('Unit Test') {
+      steps {
+        script {
+          sh "npm test"
+        }
+      }
+    }
+  }
+}
+
