@@ -1,5 +1,7 @@
 # Secure Angular configuration/credentials in containerized environment
 
+[![Node.js CI](https://github.com/raksit31667/example-angular-secret-management/actions/workflows/nodejs.yaml/badge.svg)](https://github.com/raksit31667/example-angular-secret-management/actions/workflows/nodejs.yaml)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.7.
 
 ## Goals
